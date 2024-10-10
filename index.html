@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.0/css/bootstrap.min.css" rel="stylesheet" />
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <!-- <script src="https://ajax.aspnetcdn.com/ajax/jquery/jquery-2.2.0.min.js"></script> -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="admin.js"></script>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="container">
+        <h2>Привет, админ!</h2>
+        <div class="block">
+
+            <div class="add">
+                <div class="addU">
+                    <h4>Изменить пользователя</h4>
+                    <form name="userForm" id="userName">
+                        <input type="hidden" name="Id" value="0" />
+                        <div class="form-group col-md-5">
+                            <label for="FirstName">Имя:</label>
+                            <input class="form-control" name="firstName" id="FirstName" />
+                        </div>
+                        <div class="form-group col-md-5">
+                            <label for="LastName">Фамилия:</label>
+                            <input class="form-control" name="lastName" />
+                        </div>
+                        <div class="form-group col-md-5">
+                            <label for="Login">Логин:</label>
+                            <input class="form-control" name="login" />
+                        </div>
+                        <div class="form-group col-md-5">
+                            <label for="Email">Email:</label>
+                            <input class="form-control" name="email" />
+                        </div>
+
+                        <div class="panel-body">
+                            <button id="submitUser" class="blue">Сохранить</button>
+                            <button id="reset2" class="blue">Сбросить</button>
+                        </div>
+                    </form>
+                </div>
+
+                <div class="addS">
+                    <h4>Добавить/изменить песню</h4>
+
+                    <form name="songForm" id="songName" enctype="multipart/form-data" method="POST">
+                        <input type="hidden" id="idSong" name="Id" value="0" />
+                        <div class="row">
+                            <div class="form-group col-md-6">
+                                <label for="name" class="labels">Название:</label>
+                                <input class="form-control" id="nameSong" name="name" />
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label for="singer" class="labels">Исполнитель:</label>
+                                <input class="form-control" id="singerSong" name="singer" />
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="form-group col-md-6">
+                                <label for="runtime" class="labels">Длительность:</label>
+                                <input class="form-control" id="runtimeSong" name="runtime" />
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label for="size" class="labels">Размер в МБ:</label>
+                                <input class="form-control" id="sizeSong" name="size" />
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="form-group col-md-6">
+                                <label for="file" class="labels">Загрузите аудиофайл МР3</label>
+
+                                <audio id="FileCreate" controls>
+                                    <source src="" type="audio/mpeg">
+
+                                </audio>
+
+
+                                <div id="FileFile">
+                                    <input type="file" style="width:480px; margin-left:10px;" name="file" id="musFile"
+                                        multiple class="form-control" accept="audio/mpeg, .mp3" />
+                                    <span class="text-danger"></span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="form-group col-md-6">
+                                <label for="pic" class="labels">Загрузите постер</label>
+                                <img id="PosterCreate" src="" alt="Preview" />
+
+                                <div id="PosterFile">
+                                    <input type="file" style="width:480px; margin-left:10px;" name="pic" id="AddPoster"
+                                        multiple class="form-control" accept=".jpeg, .jpg" />
+                                    <span class="text-danger"></span>
+                                </div>
+                            </div>
+                        </div>
+<!-- //////////////////////////////////////// -->
+                        <div class="row">
+                            <div class="form-group col-md-6">
+                                <label for="Datetime" class="labels">Дата загрузки:</label>
+                                <input class="form-control" id="datetime" name="datetime" type="date" />
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label for="genre" class="labels">Жанр:</label>
+                                <select id="genreSelect" class="form-control" name="genre"></select>
+                                <span id="genreError" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="form-group col-md-6">
+                                <label for="user" class="labels">Загружено пользователем:</label>
+                                <input class="form-control" id="userSong" name="user" />
+                            </div>
+                            <div class="form-group col-md-6">
+                                <div class="panel-body">
+                                    <button id="submit" class="blue">Сохранить</button>
+                                    <button id="reset" class="blue">Сбросить</button>
+                                </div>
+                            </div>
+                        </div>
+                        </form>
+                </div>
+                <div class="addG">
+                    <h4>Добавить/изменить жанр</h4>
+                   
+                    <form name="genreForm" id="genreName">
+                        <input type="hidden" name="Id" value="0" />
+                        <div class="form-group col-md-5">
+                            <label for="name">Название жанра:</label>
+                            <input class="form-control" name="name" />
+                        </div>
+                        <div class="panel-body">
+                            <button id="submitgenre" class="blue">Сохранить</button>
+                            <button id="reset" class="blue">Сбросить</button>
+                        </div>
+                      
+                    </form>
+                </div>
+            </div>
+
+            <div class="page">
+                <div class="users">
+                    <h4>Список пользователей</h4>
+                    <table class="table table-condensed table-striped col-md-6 user1">
+
+
+                        <tbody></tbody>
+                    </table>
+                </div>
+
+                <div class="songs">
+                    <h4>Плей-лист</h4>
+                    <table class="table table-condensed table-striped col-md-6 song1">
+
+                        <tbody></tbody>
+                    </table>
+                </div>
+
+
+                <div class="genres">
+                    <h4>Жанры</h4>
+                    <table class="table table-condensed table-striped col-md-6 genre1">
+                        
+                        <tbody></tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+
+        // function GetGenres() {
+            
+        //   $.ajax({
+
+        //         url: "https://localhost:7264/api/Genres",
+        //         method: "GET",
+
+        //         contentType: "application/json",
+        //         success: function (genres) {
+        //                     console.log("Genres received:", genres);
+        //                     $(".genre1 tbody").empty(); // Очищаем предыдущие данные
+        //                     let rows = "";
+
+        //                     $.each(genres, function (index, genre) {
+        //                         rows += row1(genre); // Генерируем строки для каждой записи жанра
+        //                     });
+
+        //                     $(".genre1 tbody").append(rows); // Добавляем новые строки в таблицу
+        //                  },
+        //       error: function (x) {
+        //           console.log(x);
+        //       }
+        //   });
+        // }
+        //     let row1 = function (genre) {
+        //         let temp1 = `
+        //     <tr>
+        //         <td>${genre.name}
+        //             <button class='editLink1' id='blue' data-id='${genre.id}'>Изменить</button>
+        //             <button class='removeLink1' id='blue' data-id='${genre.id}'>Удалить</button>
+        //         </td>
+        //     </tr>`;
+        //     console.log("Generated row:", temp1); 
+        //         return temp1; // Возвращаем строку с жанром
+        //     };
+
+        //     // Вызываем GetGenres() после загрузки документа
+        //     $(document).ready(function () {
+        //         GetGenres(); // Вызываем функцию
+        //     });
+    </script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.0/js/bootstrap.min.js"></script>
+</body>
+
+</html>
